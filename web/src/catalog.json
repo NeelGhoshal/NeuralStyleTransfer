@@ -1,0 +1,20 @@
+{
+  "photos": [
+    {"id": "balloon", "name": "Balloon", "credit": "Thomas Kelley, CC0", "link": "https://commons.wikimedia.org/wiki/File:Hot_air_balloon_in_mountains_(Unsplash).jpg"},
+    {"id": "venice", "name": "Venice", "credit": "LukasLa, CC0", "link": "https://commons.wikimedia.org/wiki/File:Venice_canal_with_gondolas,_2026-01-17.jpg"},
+    {"id": "kitten", "name": "Kitten", "credit": "From the original notebook"},
+    {"id": "lighthouse", "name": "Lighthouse", "credit": "Jebulon, CC0", "link": "https://commons.wikimedia.org/wiki/File:Lighthouse_Chania_evening_sun.jpg"},
+    {"id": "sunflower", "name": "Sunflower", "credit": "Jonson22, CC0", "link": "https://commons.wikimedia.org/wiki/File:Son%C4%8Dnica_-_Sunflower_-_Helianthus_annuus_(4).JPG"},
+    {"id": "skyline", "name": "Skyline", "credit": "Sebastien Gabriel, CC0", "link": "https://commons.wikimedia.org/wiki/File:San_Francisco_skyline_(Unsplash).jpg"}
+  ],
+  "styles": [
+    {"id": "windows", "name": "Simultaneous Windows", "credit": "Robert Delaunay, 1912", "link": "https://commons.wikimedia.org/wiki/File:1912_Delaunay_Simultanfenster_auf_die_Stadt_anagoria.JPG"},
+    {"id": "great-wave", "name": "The Great Wave", "credit": "After Katsushika Hokusai, 1831", "link": "https://commons.wikimedia.org/wiki/File:Great_Wave_off_Kanagawa2.jpg"},
+    {"id": "scream", "name": "The Scream", "credit": "Edvard Munch, 1893", "link": "https://commons.wikimedia.org/wiki/File:Edvard_Munch,_1893,_The_Scream,_oil,_tempera_and_pastel_on_cardboard,_91_x_73_cm,_National_Gallery_of_Norway.jpg"},
+    {"id": "starry-night", "name": "The Starry Night", "credit": "Vincent van Gogh, 1889", "link": "https://commons.wikimedia.org/wiki/File:Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg"},
+    {"id": "composition-vii", "name": "Composition VII", "credit": "Wassily Kandinsky, 1913", "link": "https://commons.wikimedia.org/wiki/File:Composition_VII_-_Wassily_Kandinsky,_GAC.jpg"},
+    {"id": "tree-of-life", "name": "Tree of Life", "credit": "Gustav Klimt, 1911", "link": "https://commons.wikimedia.org/wiki/File:Klimt_-_Nine_Cartoons_for_the_Stoclet_Frieze-_Part_4,_Part_of_the_tree_of_life_(1910-11).jpg"},
+    {"id": "strawberry-thief", "name": "Strawberry Thief", "credit": "William Morris, 1883", "link": "https://commons.wikimedia.org/wiki/File:Textile,_Strawberry_Thief,_designed_1883,_printed_ca._1934_(CH_18340065)_(sq_cropped).jpg"},
+    {"id": "feathers", "name": "Feathers", "credit": "From the original notebook"}
+  ]
+}

@@ -12,3 +12,15 @@ https://keras.io/api/applications/vgg/
 ![image](https://github.com/NeelGhoshal/NeuralStyleTransfer/assets/72409908/2103179a-8535-4b2f-8b27-ca2201d233d3)
 ![image](https://github.com/NeelGhoshal/NeuralStyleTransfer/assets/72409908/e25b0cb0-40b4-4b84-8be1-69c8784ff7ad)
 ![image](https://github.com/NeelGhoshal/NeuralStyleTransfer/assets/72409908/d987f38a-517a-4021-b847-292a53c5af7b)
+
+## Website
+
+`web/` is a static site for browsing 48 finished results and running style transfer on your own images. The network runs in the visitor's browser (WebGL, or WebAssembly without a GPU), so no images are uploaded.
+
+```
+cd web
+npm ci
+npm run dev
+```
+
+It uses Magenta's arbitrary stylization network, as in the notebook's "Using TF-Hub" section. To change the sample images, edit `web/src/catalog.json` and run `npm i --no-save puppeteer-core && npm run prerun`. `render.yaml` describes the Render deployment.

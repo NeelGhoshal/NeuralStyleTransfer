@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Neural Style Transfer</title>
+    <meta
+      name="description"
+      content="Repaint a photo in the manner of any painting. Browse 48 finished results, or run your own images in the browser."
+    />
+    <meta name="theme-color" content="#b9bbba" />
+    <meta property="og:title" content="Neural Style Transfer" />
+    <meta property="og:description" content="Six photos, eight paintings, forty-eight results. Add your own." />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <script type="module" src="/src/main.ts"></script>
+  </head>
+  <body>
+    <a class="skip" href="#table">Skip to the results</a>
+    <header class="top">
+      <p class="name">Neural Style Transfer</p>
+      <nav aria-label="Page">
+        <a href="#how">How it works</a>
+        <a href="https://github.com/NeelGhoshal/NeuralStyleTransfer">Source code</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="intro">
+        <h1><span>Six photos, </span><span>eight paintings, </span><span>forty-eight results.</span></h1>
+        <div class="intro-side">
+          <p>
+            Each square is the photo on its left, repainted by a neural network to look like the painting above it.
+            Open any of them, or add an image and watch a new line fill in.
+          </p>
+          <div class="adders">
+            <button class="btn primary" data-add="photo">Add your photo</button>
+            <button class="btn" data-add="style">Add a painting</button>
+          </div>
+          <p class="note">Your images stay on this device. The network runs in your browser.</p>
+        </div>
+      </section>
+
+      <div class="table-wrap" id="table" tabindex="-1">
+        <table>
+          <caption class="vh">
+            Photos by row, paintings by column. Each cell opens the photo repainted in that style.
+          </caption>
+          <thead></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <section class="how" id="how">
+        <h2>Two ways to repaint a kitten</h2>
+        <div class="how-text">
+          <p>
+            This project began as a notebook following
+            <a href="https://arxiv.org/abs/1508.06576">A Neural Algorithm of Artistic Style</a> (Gatys, Ecker and Bethge,
+            2015). It starts from the photo and adjusts the pixels over 1,000 steps, until the image-recognition network
+            VGG-19 still sees a kitten but measures the same textures as the painting. Every new pair starts over.
+          </p>
+          <p>
+            The table uses a later method that the notebook also tries:
+            <a href="https://arxiv.org/abs/1705.06830">Magenta’s arbitrary stylization</a>. One network reduces any
+            painting to 100 numbers, and a second repaints the photo from those numbers in a single pass. That is what
+            makes it quick enough to run on your own device.
+          </p>
+        </div>
+        <div class="figs">
+          <figure class="original">
+            <img src="/photos/kitten.jpg" alt="A ginger kitten on a white background" loading="lazy" width="640" height="960" />
+            <figcaption>The photo</figcaption>
+          </figure>
+          <figure class="original">
+            <img src="/styles/feathers.jpg" alt="Abstract swirl of orange, teal and magenta feathers on black" loading="lazy" width="640" height="512" />
+            <figcaption>The painting</figcaption>
+          </figure>
+          <figure>
+            <img src="/notebook-result.jpg" alt="The kitten with feathery, iridescent fur" loading="lazy" width="341" height="512" />
+            <figcaption>The notebook, after 1,000 steps</figcaption>
+          </figure>
+          <figure>
+            <img src="/gallery/kitten--feathers.webp" alt="The kitten with dark, ember-coloured fur" loading="lazy" width="512" height="768" />
+            <figcaption>The table, after one pass</figcaption>
+          </figure>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <h2>Image credits</h2>
+      <ul id="credits"></ul>
+      <p>
+        Model weights from
+        <a href="https://github.com/reiinakano/arbitrary-image-stylization-tfjs">arbitrary-image-stylization-tfjs</a>,
+        Apache 2.0.
+      </p>
+    </footer>
+
+    <dialog id="viewer" aria-labelledby="v-title">
+      <div class="stage">
+        <div class="compare" id="v-compare">
+          <img id="v-after" alt="" />
+          <img id="v-before" alt="" />
+          <span class="handle" aria-hidden="true"></span>
+          <input id="v-wipe" type="range" min="0" max="100" value="0" aria-label="Reveal the original photo" />
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-head">
+          <h2 id="v-title"></h2>
+          <button class="btn icon" id="v-close" aria-label="Close">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13" /></svg>
+          </button>
+        </div>
+        <dl class="pair" id="v-pair"></dl>
+        <form id="v-form">
+          <div class="field">
+            <label for="v-strength">Painting strength</label>
+            <output id="v-strength-out" for="v-strength">100%</output>
+            <input id="v-strength" type="range" min="0" max="100" step="5" value="100" />
+          </div>
+          <fieldset class="field sizes">
+            <legend>Long side, in pixels</legend>
+            <div class="seg" id="v-sizes"></div>
+          </fieldset>
+          <button class="btn primary" id="v-run" type="submit">Repaint</button>
+          <a class="btn" id="v-save" download>Save image</a>
+          <p class="status" id="v-status" role="status"></p>
+        </form>
+        <div class="steps" role="group" aria-label="Move around the table">
+          <button class="btn" data-step="style">Next painting</button>
+          <button class="btn" data-step="photo">Next photo</button>
+        </div>
+      </div>
+    </dialog>
+
+    <div class="drop" id="drop" hidden>
+      <div data-drop="photo"><span>Drop here to use as a photo</span></div>
+      <div data-drop="style"><span>Drop here to use as a painting</span></div>
+    </div>
+    <div class="toast" id="toast" role="status" hidden>
+      <span id="toast-text"></span>
+      <button class="btn" id="toast-close">Dismiss</button>
+    </div>
+    <input type="file" id="file" accept="image/*" hidden />
+  </body>
+</html>

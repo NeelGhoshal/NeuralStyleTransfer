@@ -1,0 +1,14 @@
+<!doctype html>
+<meta charset="utf-8" />
+<title>Pre-run</title>
+<!-- Dev only: driven by scripts/prerun.mjs, never part of the build. -->
+<script type="module">
+  import * as engine from "/src/engine.ts";
+  import { toImageData, toCanvas, loadImage } from "/src/images.ts";
+  window.engine = engine;
+  window.look = async (url, max) => Array.from(await engine.describe(toImageData(await loadImage(url), max)));
+  window.paintTo = async (url, look, max) =>
+    toCanvas(await engine.stylize(toImageData(await loadImage(url), max, 4), look)).toDataURL("image/png");
+  window.resize = async (src, max, q) => toCanvas(toImageData(await loadImage(src), max)).toDataURL("image/webp", q);
+  window.isReady = true;
+</script>
